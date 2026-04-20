@@ -1,10 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { Header } from "@/components/header";
-import { Footer } from "@/components/footer";
+import { SiteLayout } from "@/components/site-layout";
 import { SubscribeForm } from "@/components/subscribe-form";
-import { Badge } from "@/components/ui/badge";
-import { Separator } from "@/components/ui/separator";
 import { getPost, getAllPosts } from "@/lib/posts";
 import type { Metadata } from "next";
 
@@ -32,91 +29,66 @@ export default async function PostPage({ params }: Props) {
   if (!post) notFound();
 
   return (
-    <div className="min-h-screen flex flex-col">
-      <Header />
+    <SiteLayout>
+      {/* Back */}
+      <div className="mb-10 animate-fade-up">
+        <Link
+          href="/"
+          className="text-xs text-muted-foreground hover:text-foreground transition-colors duration-150"
+        >
+          ← All writing
+        </Link>
+      </div>
 
-      <main className="flex-1 max-w-2xl mx-auto w-full px-6 py-12">
-        {/* Back link */}
-        <div className="animate-fade-up mb-10">
-          <Link
-            href="/"
-            className="text-xs tracking-[0.2em] uppercase text-muted-foreground hover:text-foreground transition-colors duration-200"
-            style={{ fontFamily: "var(--font-crimson)" }}
-          >
-            ← All writing
-          </Link>
+      {/* Header */}
+      <header className="mb-10 animate-fade-up delay-1">
+        <div className="flex items-center gap-3 mb-5">
+          {post.tags.map((tag) => (
+            <span
+              key={tag}
+              className="text-[11px] text-muted-foreground uppercase tracking-widest"
+            >
+              {tag}
+            </span>
+          ))}
         </div>
 
-        {/* Post header */}
-        <header className="animate-fade-up animate-fade-up-delay-1 mb-8">
-          <div className="flex items-center gap-3 mb-5">
-            {post.tags.map((tag) => (
-              <Badge
-                key={tag}
-                variant="secondary"
-                className="text-[10px] tracking-[0.15em] uppercase rounded-none px-2 py-0.5 font-normal"
-                style={{ fontFamily: "var(--font-crimson)" }}
-              >
-                {tag}
-              </Badge>
-            ))}
-          </div>
+        <h1 className="text-[2.4rem] font-semibold leading-[1.1] tracking-[-0.025em] text-foreground mb-3">
+          {post.title}
+        </h1>
 
-          <h1
-            className="text-4xl sm:text-5xl font-semibold leading-tight text-foreground mb-4"
-            style={{ fontFamily: "var(--font-playfair)" }}
-          >
-            {post.title}
-          </h1>
+        <p className="text-base text-muted-foreground mb-5 leading-relaxed">
+          {post.subtitle}
+        </p>
 
-          <p
-            className="text-xl italic text-muted-foreground mb-6"
-            style={{ fontFamily: "var(--font-crimson)" }}
-          >
-            {post.subtitle}
-          </p>
-
-          <div
-            className="flex items-center gap-4 text-sm text-muted-foreground"
-            style={{ fontFamily: "var(--font-crimson)" }}
-          >
-            <time dateTime={post.dateISO}>{post.date}</time>
-            <span>·</span>
-            <span>{post.readingTime} read</span>
-          </div>
-        </header>
-
-        <Separator className="mb-10 animate-fade-up animate-fade-up-delay-2" />
-
-        {/* Post content */}
-        <div
-          className="prose-editorial animate-fade-up animate-fade-up-delay-3"
-          dangerouslySetInnerHTML={{ __html: post.content }}
-        />
-
-        {/* Ornamental end mark */}
-        <div className="ornament text-base text-muted-foreground my-12 animate-fade-up animate-fade-up-delay-4">
-          <span>✦</span>
+        <div className="flex items-center gap-3 text-xs text-muted-foreground">
+          <time dateTime={post.dateISO}>{post.date}</time>
+          <span>·</span>
+          <span>{post.readingTime} read</span>
         </div>
+      </header>
 
-        {/* Subscribe CTA */}
-        <div className="animate-fade-up animate-fade-up-delay-5">
-          <SubscribeForm variant="section" />
-        </div>
+      <hr className="border-border mb-10 animate-fade-up delay-2" />
 
-        {/* Back link bottom */}
-        <div className="mt-8 text-center animate-fade-up animate-fade-up-delay-5">
-          <Link
-            href="/"
-            className="text-xs tracking-[0.2em] uppercase text-muted-foreground hover:text-foreground transition-colors duration-200"
-            style={{ fontFamily: "var(--font-crimson)" }}
-          >
-            ← Back to all writing
-          </Link>
-        </div>
-      </main>
+      {/* Content */}
+      <article
+        className="prose-clean animate-fade-up delay-3"
+        dangerouslySetInnerHTML={{ __html: post.content }}
+      />
 
-      <Footer />
-    </div>
+      <hr className="border-border mt-14 mb-10" />
+
+      {/* Subscribe */}
+      <section className="mb-10">
+        <SubscribeForm />
+      </section>
+
+      <Link
+        href="/"
+        className="text-xs text-muted-foreground hover:text-foreground transition-colors duration-150"
+      >
+        ← Back to all writing
+      </Link>
+    </SiteLayout>
   );
 }
