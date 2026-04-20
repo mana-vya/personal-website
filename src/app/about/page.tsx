@@ -10,24 +10,55 @@ export const metadata: Metadata = {
 export default function AboutPage() {
   return (
     <SiteLayout>
+
       {/* Hero */}
       <section className="mb-16 animate-fade-up">
-        <h1 className="text-[3.5rem] leading-[1.06] tracking-[-0.035em] mb-9">
-          <span className="block font-extralight text-foreground">About</span>
-          <span className="block font-semibold text-foreground">this newsletter</span>
+        <h1
+          className="mb-7 leading-[1.05]"
+          style={{ fontFamily: "var(--font-cormorant)" }}
+        >
+          <span
+            className="block"
+            style={{ fontSize: "4.75rem", fontWeight: 300, fontStyle: "italic", color: "#1C1510" }}
+          >
+            About
+          </span>
+          <span
+            className="block"
+            style={{ fontSize: "4.75rem", fontWeight: 700, color: "#1C1510", letterSpacing: "-0.025em" }}
+          >
+            this notebook
+          </span>
         </h1>
-        <p className="text-[0.8125rem] text-muted-foreground leading-relaxed max-w-[340px]">
+        <p
+          style={{
+            fontFamily: "var(--font-lora)",
+            fontSize: "0.875rem",
+            color: "#9A8B78",
+            fontStyle: "italic",
+          }}
+        >
           Who writes it and why.
         </p>
       </section>
 
-      <hr className="border-border mb-16 animate-fade-up delay-1" />
+      <div className="mb-16 animate-fade-up delay-1" style={{ borderTop: "1px solid rgba(160,140,110,0.35)" }} />
 
-      {/* 01 — Who */}
+      {/* 01 */}
       <section className="mb-16 animate-fade-up delay-2">
-        <p className="text-[11px] text-muted-foreground mb-8 tabular-nums tracking-wider">01</p>
-
-        <div className="prose-clean">
+        <p
+          className="mb-8"
+          style={{
+            fontFamily: "var(--font-cormorant)",
+            fontSize: "0.8125rem",
+            color: "#8B1C2B",
+            letterSpacing: "0.18em",
+            textTransform: "uppercase",
+          }}
+        >
+          01
+        </p>
+        <div className="prose-notebook">
           <p>
             I&apos;m Manav — a software engineer and occasional writer based in
             Bengaluru. I think a lot about how technology changes the texture of
@@ -43,17 +74,35 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <hr className="border-border mb-16" />
+      <div className="mb-16" style={{ borderTop: "1px solid rgba(160,140,110,0.35)" }} />
 
-      {/* 02 — What */}
+      {/* 02 */}
       <section className="mb-16 animate-fade-up delay-3">
-        <p className="text-[11px] text-muted-foreground mb-8 tabular-nums tracking-wider">02</p>
-
-        <h2 className="text-[0.9375rem] font-medium text-foreground mb-4 tracking-tight">
+        <p
+          className="mb-8"
+          style={{
+            fontFamily: "var(--font-cormorant)",
+            fontSize: "0.8125rem",
+            color: "#8B1C2B",
+            letterSpacing: "0.18em",
+            textTransform: "uppercase",
+          }}
+        >
+          02
+        </p>
+        <h2
+          className="mb-5"
+          style={{
+            fontFamily: "var(--font-cormorant)",
+            fontSize: "1.5rem",
+            fontWeight: 600,
+            fontStyle: "italic",
+            color: "#1C1510",
+          }}
+        >
           What this newsletter is
         </h2>
-
-        <div className="prose-clean">
+        <div className="prose-notebook">
           <p>
             Short essays, usually 1,000–2,500 words. Personal in perspective
             but not confessional in form. I write about ideas — technology,
@@ -68,13 +117,25 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <hr className="border-border mb-16" />
+      <div className="mb-16" style={{ borderTop: "1px solid rgba(160,140,110,0.35)" }} />
 
-      {/* 03 — Subscribe */}
-      <section className="animate-fade-up delay-4 pb-20">
-        <p className="text-[11px] text-muted-foreground mb-8 tabular-nums tracking-wider">03</p>
+      {/* 03 */}
+      <section className="animate-fade-up delay-4 pb-24">
+        <p
+          className="mb-8"
+          style={{
+            fontFamily: "var(--font-cormorant)",
+            fontSize: "0.8125rem",
+            color: "#8B1C2B",
+            letterSpacing: "0.18em",
+            textTransform: "uppercase",
+          }}
+        >
+          03
+        </p>
         <SubscribeForm />
       </section>
+
     </SiteLayout>
   );
 }

@@ -30,53 +30,105 @@ export default async function PostPage({ params }: Props) {
 
   return (
     <SiteLayout>
+
       {/* Back */}
       <div className="mb-12 animate-fade-up">
         <Link
           href="/"
-          className="text-[0.8125rem] text-muted-foreground hover:text-foreground transition-colors duration-150"
+          className="hover:opacity-60 transition-opacity duration-150"
+          style={{
+            fontFamily: "var(--font-lora)",
+            fontSize: "0.75rem",
+            color: "#9A8B78",
+            letterSpacing: "0.08em",
+            textTransform: "uppercase",
+          }}
         >
           ← All writing
         </Link>
       </div>
 
-      {/* Post header */}
+      {/* Header */}
       <header className="mb-10 animate-fade-up delay-1">
-        <div className="flex items-center gap-4 mb-6">
+        <div className="flex items-center gap-3 mb-6 flex-wrap">
           {post.tags.map((tag) => (
             <span
               key={tag}
-              className="text-[10px] text-muted-foreground uppercase tracking-[0.15em]"
+              style={{
+                fontFamily: "var(--font-lora)",
+                fontSize: "0.625rem",
+                color: "#8B1C2B",
+                letterSpacing: "0.2em",
+                textTransform: "uppercase",
+              }}
             >
               {tag}
             </span>
           ))}
-          <span className="text-muted-foreground/40 text-[10px]">·</span>
-          <time dateTime={post.dateISO} className="text-[10px] text-muted-foreground tracking-wide">
+          <span style={{ color: "rgba(154,139,120,0.5)", fontSize: "0.75rem" }}>·</span>
+          <time
+            dateTime={post.dateISO}
+            style={{ fontFamily: "var(--font-lora)", fontSize: "0.75rem", color: "#9A8B78" }}
+          >
             {post.date}
           </time>
-          <span className="text-muted-foreground/40 text-[10px]">·</span>
-          <span className="text-[10px] text-muted-foreground tracking-wide">{post.readingTime}</span>
+          <span style={{ color: "rgba(154,139,120,0.5)", fontSize: "0.75rem" }}>·</span>
+          <span style={{ fontFamily: "var(--font-lora)", fontSize: "0.75rem", color: "#9A8B78" }}>
+            {post.readingTime}
+          </span>
         </div>
 
-        <h1 className="text-[2.75rem] font-semibold leading-[1.1] tracking-[-0.03em] text-foreground mb-4">
+        <h1
+          className="leading-[1.08] mb-4"
+          style={{
+            fontFamily: "var(--font-cormorant)",
+            fontSize: "3.25rem",
+            fontWeight: 700,
+            color: "#1C1510",
+            letterSpacing: "-0.02em",
+          }}
+        >
           {post.title}
         </h1>
 
-        <p className="text-base text-muted-foreground leading-relaxed">
+        <p
+          className="leading-relaxed"
+          style={{
+            fontFamily: "var(--font-cormorant)",
+            fontSize: "1.35rem",
+            fontStyle: "italic",
+            color: "#7D6E5C",
+          }}
+        >
           {post.subtitle}
         </p>
       </header>
 
-      <hr className="border-border mb-10 animate-fade-up delay-2" />
+      {/* Divider */}
+      <div
+        className="mb-10 animate-fade-up delay-2"
+        style={{ borderTop: "1px solid rgba(160,140,110,0.35)" }}
+      />
 
-      {/* Content */}
+      {/* Article content */}
       <article
-        className="prose-clean animate-fade-up delay-3"
+        className="prose-notebook animate-fade-up delay-3"
         dangerouslySetInnerHTML={{ __html: post.content }}
       />
 
-      <hr className="border-border mt-16 mb-12" />
+      {/* End mark */}
+      <p
+        className="mt-12 mb-10 text-center"
+        style={{ color: "#8B1C2B", fontSize: "1rem" }}
+      >
+        ✦
+      </p>
+
+      {/* Divider */}
+      <div
+        className="mb-12"
+        style={{ borderTop: "1px solid rgba(160,140,110,0.35)" }}
+      />
 
       {/* Subscribe */}
       <section className="mb-12">
@@ -85,10 +137,18 @@ export default async function PostPage({ params }: Props) {
 
       <Link
         href="/"
-        className="text-[0.8125rem] text-muted-foreground hover:text-foreground transition-colors duration-150 block pb-20"
+        className="hover:opacity-60 transition-opacity duration-150 block pb-24"
+        style={{
+          fontFamily: "var(--font-lora)",
+          fontSize: "0.75rem",
+          color: "#9A8B78",
+          letterSpacing: "0.08em",
+          textTransform: "uppercase",
+        }}
       >
         ← Back to all writing
       </Link>
+
     </SiteLayout>
   );
 }

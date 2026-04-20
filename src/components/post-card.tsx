@@ -11,18 +11,50 @@ export function PostCard({ post, variant = "default" }: PostCardProps) {
     return (
       <Link href={`/${post.slug}`} className="block group">
         <article>
-          <h2 className="text-[1.6rem] font-medium leading-snug text-foreground group-hover:opacity-60 transition-opacity duration-200 mb-2 tracking-tight">
+          <h2
+            className="leading-[1.1] mb-3 group-hover:opacity-60 transition-opacity duration-200"
+            style={{
+              fontFamily: "var(--font-cormorant)",
+              fontSize: "2.1rem",
+              fontWeight: 600,
+              color: "#1C1510",
+              letterSpacing: "-0.01em",
+            }}
+          >
             {post.title}
           </h2>
-          <p className="text-sm text-muted-foreground leading-relaxed mb-5 max-w-[480px]">
+          <p
+            className="leading-relaxed mb-5"
+            style={{
+              fontFamily: "var(--font-lora)",
+              fontSize: "0.9rem",
+              color: "#7D6E5C",
+              lineHeight: "1.75",
+            }}
+          >
             {post.excerpt}
           </p>
           <div className="flex items-center gap-4">
-            <span className="text-xs text-foreground group-hover:opacity-60 transition-opacity duration-200">
+            <span
+              className="group-hover:opacity-60 transition-opacity duration-200"
+              style={{
+                fontFamily: "var(--font-cormorant)",
+                fontSize: "1.05rem",
+                fontStyle: "italic",
+                color: "#8B1C2B",
+              }}
+            >
               Read →
             </span>
-            <span className="text-xs text-muted-foreground">
-              {post.readingTime} read · {post.date}
+            <span
+              style={{
+                fontFamily: "var(--font-lora)",
+                fontSize: "0.75rem",
+                color: "#9A8B78",
+                letterSpacing: "0.05em",
+              }}
+            >
+              {post.readingTime} · {post.date}
             </span>
           </div>
         </article>
@@ -32,21 +64,47 @@ export function PostCard({ post, variant = "default" }: PostCardProps) {
 
   return (
     <Link href={`/${post.slug}`} className="block group">
-      <article className="py-5 border-b border-border last:border-0">
-        <div className="flex items-baseline justify-between gap-6 mb-1.5">
-          <h3 className="text-[0.9375rem] font-normal text-foreground group-hover:opacity-60 transition-opacity duration-200 leading-snug">
-            {post.title}
-          </h3>
+      <article
+        className="py-5 border-b"
+        style={{ borderColor: "rgba(160, 140, 110, 0.3)" }}
+      >
+        <div className="flex items-start justify-between gap-8">
+          <div className="min-w-0 flex-1">
+            <span
+              className="block mb-1 group-hover:opacity-60 transition-opacity duration-200 leading-snug"
+              style={{
+                fontFamily: "var(--font-cormorant)",
+                fontSize: "1.2rem",
+                fontWeight: 500,
+                color: "#1C1510",
+              }}
+            >
+              {post.title}
+            </span>
+            <span
+              className="block leading-snug"
+              style={{
+                fontFamily: "var(--font-lora)",
+                fontSize: "0.8125rem",
+                color: "#9A8B78",
+                fontStyle: "italic",
+              }}
+            >
+              {post.subtitle}
+            </span>
+          </div>
           <time
             dateTime={post.dateISO}
-            className="text-xs text-muted-foreground flex-shrink-0"
+            className="flex-shrink-0 pt-[2px]"
+            style={{
+              fontFamily: "var(--font-lora)",
+              fontSize: "0.75rem",
+              color: "#9A8B78",
+            }}
           >
             {post.date}
           </time>
         </div>
-        <p className="text-sm text-muted-foreground leading-relaxed">
-          {post.subtitle}
-        </p>
       </article>
     </Link>
   );

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
 
 export function SubscribeForm() {
   const [email, setEmail] = useState("");
@@ -20,7 +19,14 @@ export function SubscribeForm() {
 
   if (status === "success") {
     return (
-      <p className="text-sm text-muted-foreground">
+      <p
+        style={{
+          fontFamily: "var(--font-cormorant)",
+          fontSize: "1.1rem",
+          fontStyle: "italic",
+          color: "#8B1C2B",
+        }}
+      >
         You&apos;re subscribed. Thank you.
       </p>
     );
@@ -28,11 +34,28 @@ export function SubscribeForm() {
 
   return (
     <div>
-      <p className="text-[0.9375rem] font-normal text-foreground mb-1">
-        Get new essays in your inbox
+      <p
+        className="mb-1"
+        style={{
+          fontFamily: "var(--font-cormorant)",
+          fontSize: "1.4rem",
+          fontWeight: 500,
+          color: "#1C1510",
+          letterSpacing: "-0.01em",
+        }}
+      >
+        Subscribe to this newsletter
       </p>
-      <p className="text-sm text-muted-foreground mb-5">
-        Subscribe to receive future writing — no noise.
+      <p
+        className="mb-5"
+        style={{
+          fontFamily: "var(--font-lora)",
+          fontSize: "0.8125rem",
+          color: "#9A8B78",
+          fontStyle: "italic",
+        }}
+      >
+        New essays, occasionally. No noise, no schedule.
       </p>
       <form onSubmit={handleSubmit} className="flex gap-2">
         <input
@@ -41,15 +64,38 @@ export function SubscribeForm() {
           onChange={(e) => setEmail(e.target.value)}
           placeholder="your@email.com"
           required
-          className="flex-1 bg-transparent border border-border px-3 py-2 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:border-foreground transition-colors duration-150 min-w-0"
+          className="flex-1 px-3 py-2 focus:outline-none transition-colors duration-150 min-w-0"
+          style={{
+            background: "rgba(255,255,255,0.6)",
+            border: "1px solid rgba(160, 140, 110, 0.5)",
+            fontFamily: "var(--font-lora)",
+            fontSize: "0.875rem",
+            color: "#1C1510",
+          }}
+          onFocus={(e) => {
+            e.target.style.borderColor = "#8B1C2B";
+            e.target.style.background = "rgba(255,255,255,0.9)";
+          }}
+          onBlur={(e) => {
+            e.target.style.borderColor = "rgba(160, 140, 110, 0.5)";
+            e.target.style.background = "rgba(255,255,255,0.6)";
+          }}
         />
-        <Button
+        <button
           type="submit"
           disabled={status === "loading"}
-          className="text-xs px-5 py-2 h-auto rounded-none bg-foreground text-background hover:opacity-75 transition-opacity duration-200"
+          className="px-5 py-2 transition-opacity duration-200 hover:opacity-80 disabled:opacity-50"
+          style={{
+            background: "#14100C",
+            color: "#F2EDE4",
+            fontFamily: "var(--font-lora)",
+            fontSize: "0.6875rem",
+            letterSpacing: "0.15em",
+            textTransform: "uppercase",
+          }}
         >
           {status === "loading" ? "..." : "Subscribe"}
-        </Button>
+        </button>
       </form>
     </div>
   );

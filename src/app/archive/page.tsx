@@ -13,41 +13,95 @@ export default function ArchivePage() {
 
   return (
     <SiteLayout>
+
       {/* Hero */}
       <section className="mb-16 animate-fade-up">
-        <h1 className="text-[3.5rem] leading-[1.06] tracking-[-0.035em] mb-9">
-          <span className="block font-extralight text-foreground">All</span>
-          <span className="block font-semibold text-foreground">writing</span>
+        <h1
+          className="mb-7 leading-[1.05]"
+          style={{ fontFamily: "var(--font-cormorant)" }}
+        >
+          <span
+            className="block"
+            style={{ fontSize: "4.75rem", fontWeight: 300, fontStyle: "italic", color: "#1C1510" }}
+          >
+            All
+          </span>
+          <span
+            className="block"
+            style={{ fontSize: "4.75rem", fontWeight: 700, color: "#1C1510", letterSpacing: "-0.025em" }}
+          >
+            writing
+          </span>
         </h1>
-        <p className="text-[0.8125rem] text-muted-foreground leading-relaxed">
+        <p
+          style={{
+            fontFamily: "var(--font-lora)",
+            fontSize: "0.875rem",
+            color: "#9A8B78",
+            fontStyle: "italic",
+          }}
+        >
           {posts.length} essays, newest first.
         </p>
       </section>
 
-      <hr className="border-border mb-16 animate-fade-up delay-1" />
+      <div className="mb-16 animate-fade-up delay-1" style={{ borderTop: "1px solid rgba(160,140,110,0.35)" }} />
 
       {/* 01 — list */}
-      <section className="animate-fade-up delay-2 pb-20">
-        <p className="text-[11px] text-muted-foreground mb-8 tabular-nums tracking-wider">01</p>
+      <section className="animate-fade-up delay-2 pb-24">
+        <p
+          className="mb-8"
+          style={{
+            fontFamily: "var(--font-cormorant)",
+            fontSize: "0.8125rem",
+            color: "#8B1C2B",
+            letterSpacing: "0.18em",
+            textTransform: "uppercase",
+          }}
+        >
+          01
+        </p>
 
         <div>
           {posts.map((post) => (
             <Link
               key={post.slug}
               href={`/${post.slug}`}
-              className="group flex items-start justify-between gap-8 py-5 border-b border-border first:border-t last:border-b-0"
+              className="group flex items-start justify-between gap-8 py-5"
+              style={{ borderTop: "1px solid rgba(160,140,110,0.25)" }}
             >
               <div className="min-w-0 flex-1">
-                <span className="block text-[0.9375rem] font-normal text-foreground group-hover:opacity-55 transition-opacity duration-200 leading-snug mb-1">
+                <span
+                  className="block mb-1 group-hover:opacity-55 transition-opacity duration-200 leading-snug"
+                  style={{
+                    fontFamily: "var(--font-cormorant)",
+                    fontSize: "1.2rem",
+                    fontWeight: 500,
+                    color: "#1C1510",
+                  }}
+                >
                   {post.title}
                 </span>
-                <span className="block text-[0.8125rem] text-muted-foreground leading-snug">
+                <span
+                  className="block leading-snug"
+                  style={{
+                    fontFamily: "var(--font-lora)",
+                    fontSize: "0.8125rem",
+                    color: "#9A8B78",
+                    fontStyle: "italic",
+                  }}
+                >
                   {post.subtitle}
                 </span>
               </div>
               <time
                 dateTime={post.dateISO}
-                className="text-[0.8125rem] text-muted-foreground flex-shrink-0 tabular-nums pt-[1px]"
+                className="flex-shrink-0 pt-[2px]"
+                style={{
+                  fontFamily: "var(--font-lora)",
+                  fontSize: "0.75rem",
+                  color: "#9A8B78",
+                }}
               >
                 {post.date}
               </time>
@@ -55,6 +109,7 @@ export default function ArchivePage() {
           ))}
         </div>
       </section>
+
     </SiteLayout>
   );
 }
