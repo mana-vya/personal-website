@@ -31,41 +31,41 @@ export default async function PostPage({ params }: Props) {
   return (
     <SiteLayout>
       {/* Back */}
-      <div className="mb-10 animate-fade-up">
+      <div className="mb-12 animate-fade-up">
         <Link
           href="/"
-          className="text-xs text-muted-foreground hover:text-foreground transition-colors duration-150"
+          className="text-[0.8125rem] text-muted-foreground hover:text-foreground transition-colors duration-150"
         >
           ← All writing
         </Link>
       </div>
 
-      {/* Header */}
+      {/* Post header */}
       <header className="mb-10 animate-fade-up delay-1">
-        <div className="flex items-center gap-3 mb-5">
+        <div className="flex items-center gap-4 mb-6">
           {post.tags.map((tag) => (
             <span
               key={tag}
-              className="text-[11px] text-muted-foreground uppercase tracking-widest"
+              className="text-[10px] text-muted-foreground uppercase tracking-[0.15em]"
             >
               {tag}
             </span>
           ))}
+          <span className="text-muted-foreground/40 text-[10px]">·</span>
+          <time dateTime={post.dateISO} className="text-[10px] text-muted-foreground tracking-wide">
+            {post.date}
+          </time>
+          <span className="text-muted-foreground/40 text-[10px]">·</span>
+          <span className="text-[10px] text-muted-foreground tracking-wide">{post.readingTime}</span>
         </div>
 
-        <h1 className="text-[2.4rem] font-semibold leading-[1.1] tracking-[-0.025em] text-foreground mb-3">
+        <h1 className="text-[2.75rem] font-semibold leading-[1.1] tracking-[-0.03em] text-foreground mb-4">
           {post.title}
         </h1>
 
-        <p className="text-base text-muted-foreground mb-5 leading-relaxed">
+        <p className="text-base text-muted-foreground leading-relaxed">
           {post.subtitle}
         </p>
-
-        <div className="flex items-center gap-3 text-xs text-muted-foreground">
-          <time dateTime={post.dateISO}>{post.date}</time>
-          <span>·</span>
-          <span>{post.readingTime} read</span>
-        </div>
       </header>
 
       <hr className="border-border mb-10 animate-fade-up delay-2" />
@@ -76,16 +76,16 @@ export default async function PostPage({ params }: Props) {
         dangerouslySetInnerHTML={{ __html: post.content }}
       />
 
-      <hr className="border-border mt-14 mb-10" />
+      <hr className="border-border mt-16 mb-12" />
 
       {/* Subscribe */}
-      <section className="mb-10">
+      <section className="mb-12">
         <SubscribeForm />
       </section>
 
       <Link
         href="/"
-        className="text-xs text-muted-foreground hover:text-foreground transition-colors duration-150"
+        className="text-[0.8125rem] text-muted-foreground hover:text-foreground transition-colors duration-150 block pb-20"
       >
         ← Back to all writing
       </Link>

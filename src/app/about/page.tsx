@@ -4,29 +4,28 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "About — Manav Yadav",
-  description:
-    "About Manav Yadav and the newsletter.",
+  description: "About Manav Yadav and the newsletter.",
 };
 
 export default function AboutPage() {
   return (
     <SiteLayout>
       {/* Hero */}
-      <section className="mb-14 animate-fade-up">
-        <h1 className="text-[3.25rem] leading-[1.08] tracking-[-0.03em] mb-8">
-          <span className="block font-light text-foreground">About</span>
+      <section className="mb-16 animate-fade-up">
+        <h1 className="text-[3.5rem] leading-[1.06] tracking-[-0.035em] mb-9">
+          <span className="block font-extralight text-foreground">About</span>
           <span className="block font-semibold text-foreground">this newsletter</span>
         </h1>
-        <p className="text-sm text-muted-foreground leading-relaxed max-w-[380px]">
+        <p className="text-[0.8125rem] text-muted-foreground leading-relaxed max-w-[340px]">
           Who writes it and why.
         </p>
       </section>
 
-      <hr className="border-border mb-12 animate-fade-up delay-1" />
+      <hr className="border-border mb-16 animate-fade-up delay-1" />
 
-      {/* Who — 01 */}
-      <section className="mb-12 animate-fade-up delay-2">
-        <p className="text-xs text-muted-foreground mb-6 tabular-nums">01</p>
+      {/* 01 — Who */}
+      <section className="mb-16 animate-fade-up delay-2">
+        <p className="text-[11px] text-muted-foreground mb-8 tabular-nums tracking-wider">01</p>
 
         <div className="prose-clean">
           <p>
@@ -44,13 +43,13 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <hr className="border-border mb-12" />
+      <hr className="border-border mb-16" />
 
-      {/* What — 02 */}
-      <section className="mb-12 animate-fade-up delay-3">
-        <p className="text-xs text-muted-foreground mb-6 tabular-nums">02</p>
+      {/* 02 — What */}
+      <section className="mb-16 animate-fade-up delay-3">
+        <p className="text-[11px] text-muted-foreground mb-8 tabular-nums tracking-wider">02</p>
 
-        <h2 className="text-[0.9375rem] font-medium text-foreground mb-4">
+        <h2 className="text-[0.9375rem] font-medium text-foreground mb-4 tracking-tight">
           What this newsletter is
         </h2>
 
@@ -69,11 +68,11 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <hr className="border-border mb-12" />
+      <hr className="border-border mb-16" />
 
-      {/* Subscribe — 03 */}
-      <section className="animate-fade-up delay-4">
-        <p className="text-xs text-muted-foreground mb-7 tabular-nums">03</p>
+      {/* 03 — Subscribe */}
+      <section className="animate-fade-up delay-4 pb-20">
+        <p className="text-[11px] text-muted-foreground mb-8 tabular-nums tracking-wider">03</p>
         <SubscribeForm />
       </section>
     </SiteLayout>

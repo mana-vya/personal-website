@@ -10,62 +10,70 @@ export default function Home() {
   return (
     <SiteLayout>
       {/* Hero */}
-      <section className="mb-14 animate-fade-up">
-        <h1 className="text-[3.25rem] leading-[1.08] tracking-[-0.03em] mb-8">
-          <span className="block font-light text-foreground">Essays &amp;</span>
-          <span className="block font-light text-foreground">notes on</span>
+      <section className="mb-16 animate-fade-up">
+        <h1 className="text-[3.5rem] leading-[1.06] tracking-[-0.035em] mb-9">
+          <span className="block font-extralight text-foreground">Essays &amp;</span>
+          <span className="block font-extralight text-foreground">notes on</span>
           <span className="block font-semibold text-foreground">modern life</span>
         </h1>
-        <p className="text-sm text-muted-foreground leading-relaxed max-w-[380px]">
+        <p className="text-[0.8125rem] text-muted-foreground leading-relaxed max-w-[340px]">
           A newsletter on technology, cities, and what it means to pay
           attention in a world designed to fragment it.
         </p>
       </section>
 
-      <hr className="border-border mb-12 animate-fade-up delay-1" />
+      <hr className="border-border mb-16 animate-fade-up delay-1" />
 
       {/* Featured post — 01 */}
-      <section className="mb-12 animate-fade-up delay-2">
-        <p className="text-xs text-muted-foreground mb-6 tabular-nums">01</p>
-        <Link href={`/${featured.slug}`} className="group block">
-          <h2 className="text-[1.55rem] font-medium leading-snug tracking-tight text-foreground group-hover:opacity-60 transition-opacity duration-200 mb-2.5">
+      <section className="mb-16 animate-fade-up delay-2">
+        <p className="text-[11px] text-muted-foreground mb-8 tabular-nums tracking-wider">01</p>
+
+        <Link href={`/${featured.slug}`} className="group block mb-4">
+          <h2 className="text-[1.75rem] font-medium leading-[1.2] tracking-[-0.02em] text-foreground group-hover:opacity-55 transition-opacity duration-200 mb-3">
             {featured.title}
           </h2>
+          <p className="text-[0.8125rem] text-muted-foreground leading-[1.7]">
+            {featured.excerpt}
+          </p>
         </Link>
-        <p className="text-sm text-muted-foreground leading-relaxed mb-5 max-w-[460px]">
-          {featured.excerpt}
-        </p>
-        <Link
-          href={`/${featured.slug}`}
-          className="text-xs text-foreground hover:opacity-60 transition-opacity duration-200"
-        >
-          Read →
-        </Link>
+
+        <div className="flex items-center gap-4 mt-5">
+          <Link
+            href={`/${featured.slug}`}
+            className="text-[0.8125rem] text-foreground hover:opacity-55 transition-opacity duration-200"
+          >
+            Read →
+          </Link>
+          <span className="text-[0.8125rem] text-muted-foreground">
+            {featured.readingTime} · {featured.date}
+          </span>
+        </div>
       </section>
 
-      <hr className="border-border mb-12" />
+      <hr className="border-border mb-16" />
 
       {/* Recent — 02 */}
-      <section className="mb-12 animate-fade-up delay-3">
-        <p className="text-xs text-muted-foreground mb-7 tabular-nums">02</p>
+      <section className="mb-16 animate-fade-up delay-3">
+        <p className="text-[11px] text-muted-foreground mb-8 tabular-nums tracking-wider">02</p>
+
         <div>
           {recent.map((post) => (
             <Link
               key={post.slug}
               href={`/${post.slug}`}
-              className="group flex items-baseline justify-between gap-6 py-4 border-b border-border last:border-0"
+              className="group flex items-start justify-between gap-8 py-5 border-b border-border first:border-t last:border-b-0"
             >
-              <div className="min-w-0">
-                <span className="block text-[0.9375rem] font-normal text-foreground group-hover:opacity-60 transition-opacity duration-200 leading-snug truncate">
+              <div className="min-w-0 flex-1">
+                <span className="block text-[0.9375rem] font-normal text-foreground group-hover:opacity-55 transition-opacity duration-200 leading-snug mb-1">
                   {post.title}
                 </span>
-                <span className="block text-xs text-muted-foreground mt-0.5 truncate">
+                <span className="block text-[0.8125rem] text-muted-foreground leading-snug">
                   {post.subtitle}
                 </span>
               </div>
               <time
                 dateTime={post.dateISO}
-                className="text-xs text-muted-foreground flex-shrink-0"
+                className="text-[0.8125rem] text-muted-foreground flex-shrink-0 pt-[1px]"
               >
                 {post.date}
               </time>
@@ -74,11 +82,11 @@ export default function Home() {
         </div>
       </section>
 
-      <hr className="border-border mb-12" />
+      <hr className="border-border mb-16" />
 
       {/* Subscribe — 03 */}
-      <section className="animate-fade-up delay-4">
-        <p className="text-xs text-muted-foreground mb-7 tabular-nums">03</p>
+      <section className="animate-fade-up delay-4 pb-20">
+        <p className="text-[11px] text-muted-foreground mb-8 tabular-nums tracking-wider">03</p>
         <SubscribeForm />
       </section>
     </SiteLayout>
