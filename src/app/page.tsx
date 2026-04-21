@@ -89,8 +89,9 @@ export default function Home() {
         <p className="section-label mb-5">I&apos;m Writing</p>
 
         <p style={{ marginBottom: "1.2em" }}>
-          Essays on design, technology, and cities — things I think about
-          slowly, published when ready.
+          I&apos;m writing and documenting my journey — blog posts and videos
+          on design, building products, and everything I&apos;m figuring out
+          along the way.
         </p>
 
         <div>
