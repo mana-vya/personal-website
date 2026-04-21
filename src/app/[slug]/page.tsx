@@ -29,125 +29,86 @@ export default async function PostPage({ params }: Props) {
   if (!post) notFound();
 
   return (
-    <SiteLayout>
+    <SiteLayout crumbs={[{ label: "HOME", href: "/" }, { label: post.title.toUpperCase(), href: `/${post.slug}` }]}>
+
+      {/* Header */}
+      <header className="animate-in mb-8">
+        <h1
+          style={{
+            fontFamily: "var(--font-source-serif)",
+            fontSize: "32px",
+            fontWeight: 600,
+            lineHeight: 1.2,
+            letterSpacing: "-0.01em",
+            marginBottom: "0.5em",
+          }}
+        >
+          {post.title}
+        </h1>
+        <p
+          style={{
+            fontFamily: "var(--font-source-serif)",
+            fontSize: "22px",
+            color: "#555",
+            fontStyle: "italic",
+            marginBottom: "1em",
+          }}
+        >
+          {post.subtitle}
+        </p>
+        <p
+          style={{
+            fontFamily: "var(--font-jetbrains)",
+            fontSize: "11px",
+            textTransform: "uppercase",
+            letterSpacing: "0.08em",
+            color: "#888",
+          }}
+        >
+          {post.date} · {post.readingTime} read
+          {post.tags.map((t) => ` · ${t}`)}
+        </p>
+      </header>
+
+      {/* Divider */}
+      <div style={{ borderTop: "1px solid #e8e8e8", marginBottom: "2em" }} />
+
+      {/* Content */}
+      <article
+        className="prose-article animate-in delay-1"
+        dangerouslySetInnerHTML={{ __html: post.content }}
+      />
+
+      {/* Divider */}
+      <div style={{ borderTop: "1px solid #e8e8e8", margin: "3em 0 2.5em" }} />
+
+      {/* Subscribe */}
+      <section className="mb-8">
+        <p className="section-label mb-4">I&apos;m Subscribable</p>
+        <p style={{ marginBottom: "1em" }}>
+          If you enjoyed this, consider subscribing. New essays, occasionally.
+        </p>
+        <div className="mt-5">
+          <SubscribeForm />
+        </div>
+      </section>
 
       {/* Back */}
-      <div className="mb-12 animate-fade-up">
+      <div style={{ marginTop: "3em", paddingBottom: "4rem" }}>
         <Link
           href="/"
-          className="hover:opacity-60 transition-opacity duration-150"
           style={{
-            fontFamily: "var(--font-lora)",
-            fontSize: "0.75rem",
-            color: "#9A8B78",
-            letterSpacing: "0.08em",
+            fontFamily: "var(--font-jetbrains)",
+            fontSize: "11px",
             textTransform: "uppercase",
+            letterSpacing: "0.08em",
+            color: "#888",
+            textDecoration: "none",
           }}
         >
           ← All writing
         </Link>
       </div>
-
-      {/* Header */}
-      <header className="mb-10 animate-fade-up delay-1">
-        <div className="flex items-center gap-3 mb-6 flex-wrap">
-          {post.tags.map((tag) => (
-            <span
-              key={tag}
-              style={{
-                fontFamily: "var(--font-lora)",
-                fontSize: "0.625rem",
-                color: "#8B1C2B",
-                letterSpacing: "0.2em",
-                textTransform: "uppercase",
-              }}
-            >
-              {tag}
-            </span>
-          ))}
-          <span style={{ color: "rgba(154,139,120,0.5)", fontSize: "0.75rem" }}>·</span>
-          <time
-            dateTime={post.dateISO}
-            style={{ fontFamily: "var(--font-lora)", fontSize: "0.75rem", color: "#9A8B78" }}
-          >
-            {post.date}
-          </time>
-          <span style={{ color: "rgba(154,139,120,0.5)", fontSize: "0.75rem" }}>·</span>
-          <span style={{ fontFamily: "var(--font-lora)", fontSize: "0.75rem", color: "#9A8B78" }}>
-            {post.readingTime}
-          </span>
-        </div>
-
-        <h1
-          className="leading-[1.08] mb-4"
-          style={{
-            fontFamily: "var(--font-cormorant)",
-            fontSize: "3.25rem",
-            fontWeight: 700,
-            color: "#1C1510",
-            letterSpacing: "-0.02em",
-          }}
-        >
-          {post.title}
-        </h1>
-
-        <p
-          className="leading-relaxed"
-          style={{
-            fontFamily: "var(--font-cormorant)",
-            fontSize: "1.35rem",
-            fontStyle: "italic",
-            color: "#7D6E5C",
-          }}
-        >
-          {post.subtitle}
-        </p>
-      </header>
-
-      {/* Divider */}
-      <div
-        className="mb-10 animate-fade-up delay-2"
-        style={{ borderTop: "1px solid rgba(160,140,110,0.35)" }}
-      />
-
-      {/* Article content */}
-      <article
-        className="prose-notebook animate-fade-up delay-3"
-        dangerouslySetInnerHTML={{ __html: post.content }}
-      />
-
-      {/* End mark */}
-      <p
-        className="mt-12 mb-10 text-center"
-        style={{ color: "#8B1C2B", fontSize: "1rem" }}
-      >
-        ✦
-      </p>
-
-      {/* Divider */}
-      <div
-        className="mb-12"
-        style={{ borderTop: "1px solid rgba(160,140,110,0.35)" }}
-      />
-
-      {/* Subscribe */}
-      <section className="mb-12">
-        <SubscribeForm />
-      </section>
-
-      <Link
-        href="/"
-        className="hover:opacity-60 transition-opacity duration-150 block pb-24"
-        style={{
-          fontFamily: "var(--font-lora)",
-          fontSize: "0.75rem",
-          color: "#9A8B78",
-          letterSpacing: "0.08em",
-          textTransform: "uppercase",
-        }}
-      >
-        ← Back to all writing
-      </Link>
 
     </SiteLayout>
   );

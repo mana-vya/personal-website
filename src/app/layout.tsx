@@ -1,37 +1,30 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, Lora, Geist_Mono } from "next/font/google";
+import { Source_Serif_4, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
-  variable: "--font-cormorant",
+const sourceSerif = Source_Serif_4({
+  variable: "--font-source-serif",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+  weight: ["400", "600"],
   style: ["normal", "italic"],
   display: "swap",
 });
 
-const lora = Lora({
-  variable: "--font-lora",
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains",
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
-  style: ["normal", "italic"],
-  display: "swap",
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
   display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Manav Yadav — Essays & Notes",
+  title: "Manav Yadav",
   description:
-    "A newsletter about technology, cities, and the texture of modern life.",
+    "Software engineer and writer based in Bengaluru. Essays on technology, cities, and modern life.",
   openGraph: {
-    title: "Manav Yadav — Essays & Notes",
+    title: "Manav Yadav",
     description:
-      "A newsletter about technology, cities, and the texture of modern life.",
+      "Software engineer and writer based in Bengaluru.",
     type: "website",
   },
 };
@@ -44,9 +37,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${cormorant.variable} ${lora.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${sourceSerif.variable} ${jetbrainsMono.variable} h-full`}
     >
-      <body className="min-h-full bg-background text-foreground">{children}</body>
+      <body className="min-h-full bg-white text-foreground">{children}</body>
     </html>
   );
 }

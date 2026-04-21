@@ -1,208 +1,75 @@
 import Link from "next/link";
 import { SiteLayout } from "@/components/site-layout";
 import { SubscribeForm } from "@/components/subscribe-form";
-import { getFeaturedPost, getRecentPosts } from "@/lib/posts";
+import { getAllPosts } from "@/lib/posts";
+
+function shortDate(dateStr: string): string {
+  const d = new Date(dateStr);
+  return d
+    .toLocaleString("en-US", { month: "short", year: "numeric" })
+    .toUpperCase();
+}
 
 export default function Home() {
-  const featured = getFeaturedPost();
-  const recent = getRecentPosts();
+  const posts = getAllPosts();
 
   return (
-    <SiteLayout>
+    <SiteLayout crumbs={[{ label: "HOME", href: "/" }]}>
 
-      {/* ── Hero ── */}
-      <section className="mb-16 animate-fade-up">
-        <h1
-          className="mb-7 leading-[1.05]"
-          style={{ fontFamily: "var(--font-cormorant)" }}
-        >
-          <span
-            className="block"
-            style={{ fontSize: "4.75rem", fontWeight: 300, fontStyle: "italic", color: "#1C1510" }}
-          >
-            Essays &amp;
-          </span>
-          <span
-            className="block"
-            style={{ fontSize: "4.75rem", fontWeight: 300, fontStyle: "italic", color: "#1C1510" }}
-          >
-            notes on
-          </span>
-          <span
-            className="block"
-            style={{ fontSize: "4.75rem", fontWeight: 700, fontStyle: "normal", color: "#1C1510", letterSpacing: "-0.025em" }}
-          >
-            modern life
-          </span>
-        </h1>
-        <p
-          className="leading-relaxed"
-          style={{
-            fontFamily: "var(--font-lora)",
-            fontSize: "0.875rem",
-            color: "#9A8B78",
-            maxWidth: "340px",
-            fontStyle: "italic",
-          }}
-        >
-          A newsletter on technology, cities, and what it means to pay
+      {/* ── Intro ── */}
+      <section className="animate-in mb-10">
+        <p style={{ marginBottom: "0.75em" }}>
+          I&apos;m Manav Yadav, a Bengaluru-based{" "}
+          <em>software engineer</em>,{" "}
+          <em>writer</em>, and{" "}
+          <em>careful observer of cities</em>.
+        </p>
+        <p style={{ marginBottom: 0 }}>
+          I like my code thoughtful, my essays long, and my coffee strong.
+        </p>
+      </section>
+
+      {/* ── I'M WRITING ── */}
+      <section className="animate-in delay-1 mb-3 mt-12">
+        <p className="section-label mb-4">I&apos;m Writing</p>
+
+        <p style={{ marginBottom: "1em" }}>
+          I run a newsletter on technology, cities, and what it means to pay
           attention in a world designed to fragment it.
         </p>
+        <p>
+          New essays, occasionally. No schedule, no noise.
+        </p>
       </section>
 
-      {/* ── Separator ── */}
-      <div className="mb-16 animate-fade-up delay-1" style={{ borderTop: "1px solid rgba(160,140,110,0.35)" }} />
-
-      {/* ── 01 — Featured ── */}
-      <section className="mb-16 animate-fade-up delay-2">
-        <p
-          className="mb-8"
-          style={{
-            fontFamily: "var(--font-cormorant)",
-            fontSize: "0.8125rem",
-            color: "#8B1C2B",
-            letterSpacing: "0.18em",
-            textTransform: "uppercase",
-          }}
-        >
-          01
-        </p>
-
-        <Link href={`/${featured.slug}`} className="group block mb-4">
-          <h2
-            className="mb-3 group-hover:opacity-60 transition-opacity duration-200 leading-[1.1]"
-            style={{
-              fontFamily: "var(--font-cormorant)",
-              fontSize: "2.1rem",
-              fontWeight: 600,
-              color: "#1C1510",
-              letterSpacing: "-0.01em",
-            }}
-          >
-            {featured.title}
-          </h2>
-          <p
-            className="leading-relaxed"
-            style={{
-              fontFamily: "var(--font-lora)",
-              fontSize: "0.875rem",
-              color: "#7D6E5C",
-              lineHeight: "1.8",
-            }}
-          >
-            {featured.excerpt}
-          </p>
-        </Link>
-
-        <div className="flex items-center gap-4 mt-5">
+      {/* ── Post table ── */}
+      <div className="animate-in delay-2 mt-8 mb-12">
+        {posts.map((post) => (
           <Link
-            href={`/${featured.slug}`}
-            className="hover:opacity-60 transition-opacity duration-200"
-            style={{
-              fontFamily: "var(--font-cormorant)",
-              fontSize: "1.05rem",
-              fontStyle: "italic",
-              color: "#8B1C2B",
-            }}
+            key={post.slug}
+            href={`/${post.slug}`}
+            className="post-row"
+            style={{ textDecoration: "none" }}
           >
-            Read →
+            <span>
+              <span className="row-org">{shortDate(post.dateISO)}</span>
+              <span style={{ color: "#999", margin: "0 0.35em" }}>/</span>
+              <span className="row-title">{post.title}</span>
+            </span>
+            <span className="row-meta">{post.readingTime}</span>
           </Link>
-          <span
-            style={{
-              fontFamily: "var(--font-lora)",
-              fontSize: "0.75rem",
-              color: "#9A8B78",
-            }}
-          >
-            {featured.readingTime} · {featured.date}
-          </span>
-        </div>
-      </section>
+        ))}
+      </div>
 
-      {/* ── Separator ── */}
-      <div className="mb-16" style={{ borderTop: "1px solid rgba(160,140,110,0.35)" }} />
-
-      {/* ── 02 — Recent ── */}
-      <section className="mb-16 animate-fade-up delay-3">
-        <p
-          className="mb-8"
-          style={{
-            fontFamily: "var(--font-cormorant)",
-            fontSize: "0.8125rem",
-            color: "#8B1C2B",
-            letterSpacing: "0.18em",
-            textTransform: "uppercase",
-          }}
-        >
-          02
+      {/* ── I'M SUBSCRIBABLE ── */}
+      <section className="animate-in delay-3 mt-12 mb-16">
+        <p className="section-label mb-4">I&apos;m Subscribable</p>
+        <p style={{ marginBottom: "1em" }}>
+          Get new essays in your inbox — occasionally, never on a schedule.
         </p>
-
-        <div>
-          {recent.map((post) => (
-            <Link
-              key={post.slug}
-              href={`/${post.slug}`}
-              className="group flex items-start justify-between gap-8 py-5"
-              style={{ borderTop: "1px solid rgba(160,140,110,0.25)" }}
-            >
-              <div className="min-w-0 flex-1">
-                <span
-                  className="block mb-1 group-hover:opacity-60 transition-opacity duration-200 leading-snug"
-                  style={{
-                    fontFamily: "var(--font-cormorant)",
-                    fontSize: "1.2rem",
-                    fontWeight: 500,
-                    color: "#1C1510",
-                  }}
-                >
-                  {post.title}
-                </span>
-                <span
-                  className="block leading-snug"
-                  style={{
-                    fontFamily: "var(--font-lora)",
-                    fontSize: "0.8125rem",
-                    color: "#9A8B78",
-                    fontStyle: "italic",
-                  }}
-                >
-                  {post.subtitle}
-                </span>
-              </div>
-              <time
-                dateTime={post.dateISO}
-                className="flex-shrink-0 pt-[2px]"
-                style={{
-                  fontFamily: "var(--font-lora)",
-                  fontSize: "0.75rem",
-                  color: "#9A8B78",
-                }}
-              >
-                {post.date}
-              </time>
-            </Link>
-          ))}
+        <div className="mt-5">
+          <SubscribeForm />
         </div>
-      </section>
-
-      {/* ── Separator ── */}
-      <div className="mb-16" style={{ borderTop: "1px solid rgba(160,140,110,0.35)" }} />
-
-      {/* ── 03 — Subscribe ── */}
-      <section className="animate-fade-up delay-4 pb-24">
-        <p
-          className="mb-8"
-          style={{
-            fontFamily: "var(--font-cormorant)",
-            fontSize: "0.8125rem",
-            color: "#8B1C2B",
-            letterSpacing: "0.18em",
-            textTransform: "uppercase",
-          }}
-        >
-          03
-        </p>
-        <SubscribeForm />
       </section>
 
     </SiteLayout>
