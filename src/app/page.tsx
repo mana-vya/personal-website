@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { SiteLayout } from "@/components/site-layout";
 import { SubscribeForm } from "@/components/subscribe-form";
+import { CompanyBadge } from "@/components/company-badge";
 import { getAllPosts } from "@/lib/posts";
 
 function shortDate(dateStr: string): string {
@@ -17,53 +18,103 @@ export default function Home() {
     <SiteLayout crumbs={[{ label: "HOME", href: "/" }]}>
 
       {/* ── Intro ── */}
-      <section className="animate-in mb-10">
+      <section className="animate-in mb-2">
         <p style={{ marginBottom: "0.75em" }}>
-          I&apos;m Manav Yadav, a Bengaluru-based{" "}
-          <em>software engineer</em>,{" "}
-          <em>writer</em>, and{" "}
-          <em>careful observer of cities</em>.
+          I&apos;m Manav, India-based{" "}
+          <em>designer</em>,{" "}
+          <em>vibe coder</em>, and{" "}
+          <em>serial builder</em>.
         </p>
-        <p style={{ marginBottom: 0 }}>
-          I like my code thoughtful, my essays long, and my coffee strong.
+        <p>
+          I like my coffee cold and strong, my side projects unfinished,
+          and my photos sharp.
+        </p>
+      </section>
+
+      {/* ── I'M EMPLOYED ── */}
+      <section className="animate-in delay-1 mt-12">
+        <p className="section-label mb-5">I&apos;m Employed</p>
+
+        <p style={{ marginBottom: "0.9em" }}>
+          I work at{" "}
+          <CompanyBadge icon="🗜️" name="Tessell" />{" "}
+          as a Senior Product Designer building a stealth AI dev tool.
+        </p>
+
+        <p style={{ marginBottom: "0.9em" }}>
+          I used to work at{" "}
+          <CompanyBadge icon="🏠" name="NoBroker" />{" "}
+          where I worked on making it profitable. I shipped some big hits
+          like{" "}
+          <span style={{ textDecoration: "underline", textUnderlineOffset: "3px" }}>VIP</span>,{" "}
+          <span style={{ textDecoration: "underline", textUnderlineOffset: "3px" }}>Builder Projects</span>,
+          and a{" "}
+          <span style={{ textDecoration: "underline", textUnderlineOffset: "3px" }}>Social Media CRM</span>.
+        </p>
+
+        <p>
+          I also worked at{" "}
+          <CompanyBadge icon="🔵" name="Samsung" />{" "}
+          where I experimented with MMI.
+        </p>
+      </section>
+
+      {/* ── I'M BUILDING ── */}
+      <section className="animate-in delay-2 mt-12">
+        <p className="section-label mb-5">I&apos;m Building</p>
+
+        <p>
+          I&apos;m starting{" "}
+          <CompanyBadge icon="😈" name="Satan Works" />{" "}
+          — designing and selling niche-themed journals, handling everything
+          from design and marketing to, well, everything.
+        </p>
+      </section>
+
+      {/* ── I'M EDUCATED ── */}
+      <section className="animate-in delay-2 mt-12">
+        <p className="section-label mb-5">I&apos;m Educated</p>
+
+        <p>
+          I graduated from{" "}
+          <CompanyBadge icon="🎓" name="IIT Guwahati" />{" "}
+          in &apos;23 with a Bachelor&apos;s in Design. I worked with{" "}
+          <span style={{ textDecoration: "underline", textUnderlineOffset: "3px" }}>Abhishek Shrivastava</span>{" "}
+          on underwater ROV controls.
         </p>
       </section>
 
       {/* ── I'M WRITING ── */}
-      <section className="animate-in delay-1 mb-3 mt-12">
-        <p className="section-label mb-4">I&apos;m Writing</p>
+      <section className="animate-in delay-3 mt-12">
+        <p className="section-label mb-5">I&apos;m Writing</p>
 
-        <p style={{ marginBottom: "1em" }}>
-          I run a newsletter on technology, cities, and what it means to pay
-          attention in a world designed to fragment it.
+        <p style={{ marginBottom: "1.2em" }}>
+          Essays on design, technology, and cities — things I think about
+          slowly, published when ready.
         </p>
-        <p>
-          New essays, occasionally. No schedule, no noise.
-        </p>
+
+        <div>
+          {posts.map((post) => (
+            <Link
+              key={post.slug}
+              href={`/${post.slug}`}
+              className="post-row"
+              style={{ textDecoration: "none" }}
+            >
+              <span>
+                <span className="row-org">{shortDate(post.dateISO)}</span>
+                <span style={{ color: "#bbb", margin: "0 0.35em" }}>/</span>
+                <span className="row-title">{post.title}</span>
+              </span>
+              <span className="row-meta">{post.readingTime}</span>
+            </Link>
+          ))}
+        </div>
       </section>
 
-      {/* ── Post table ── */}
-      <div className="animate-in delay-2 mt-8 mb-12">
-        {posts.map((post) => (
-          <Link
-            key={post.slug}
-            href={`/${post.slug}`}
-            className="post-row"
-            style={{ textDecoration: "none" }}
-          >
-            <span>
-              <span className="row-org">{shortDate(post.dateISO)}</span>
-              <span style={{ color: "#999", margin: "0 0.35em" }}>/</span>
-              <span className="row-title">{post.title}</span>
-            </span>
-            <span className="row-meta">{post.readingTime}</span>
-          </Link>
-        ))}
-      </div>
-
       {/* ── I'M SUBSCRIBABLE ── */}
-      <section className="animate-in delay-3 mt-12 mb-16">
-        <p className="section-label mb-4">I&apos;m Subscribable</p>
+      <section className="animate-in delay-4 mt-12 mb-20">
+        <p className="section-label mb-5">I&apos;m Subscribable</p>
         <p style={{ marginBottom: "1em" }}>
           Get new essays in your inbox — occasionally, never on a schedule.
         </p>

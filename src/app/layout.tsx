@@ -20,11 +20,11 @@ const jetbrainsMono = JetBrains_Mono({
 export const metadata: Metadata = {
   title: "Manav Yadav",
   description:
-    "Software engineer and writer based in Bengaluru. Essays on technology, cities, and modern life.",
+    "India-based designer, vibe coder, and serial builder. Senior Product Designer at Tessell. IIT Guwahati '23.",
   openGraph: {
     title: "Manav Yadav",
     description:
-      "Software engineer and writer based in Bengaluru.",
+      "India-based designer, vibe coder, and serial builder.",
     type: "website",
   },
 };
